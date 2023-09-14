@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tasks.css') }}">
+</head>
+<body>
+    <div class="return-button">
+        <a href="{{ url_for('index') }}" class="return-button-link">Return to Add Tasks</a>
+    </div>
+    <h1>Task List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Task Text</th>
+                <th>Date of Creation</th>
+                <th>Date to Do</th>
+                <th>Actions</th> <!-- Add a new column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task['task'] }}</td>
+                    <td>{{ task['created_date'] }}</td>
+                    <td>{{ task['due_date'] }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_task', id=task['id']) }}" class="delete-link">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
